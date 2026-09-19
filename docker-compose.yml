@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tiny-seq2seq-pipeline
+    environment:
+      - DATA_DIR=/app/data
+      - OUTPUT_DIR=/app/output
+      - DEVICE=cpu
+      - SEED=42
+      - CONFIG_PATH=/app/submission.json
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    command: >
+      sh -c "python src/data/generate.py &&
+             python src/train/train.py &&
+             python src/eval/evaluate.py"
