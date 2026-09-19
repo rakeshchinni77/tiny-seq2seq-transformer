@@ -1,0 +1,11 @@
+{
+  "model_config": {
+    "d_model": 64,
+    "nhead": 4,
+    "num_layers": 2
+  },
+  "train_config": {
+    "epochs": 10,
+    "batch_size": 64
+  }
+}
